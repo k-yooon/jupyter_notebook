@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  jupyter:
+    build:
+      context: .
+    container_name: jupyter-notebook
+    ports:
+      - "8888:8888"
+      - "8866:8866"
+    volumes:
+      - $HOME/jupyter/notebooks:/home/kyoon/jupyter/notebooks
+      - $HOME/jupyter/.cron_backup:/var/spool/cron/crontabs
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - GRANT_SUDO=yes
+      - PYTHONUNBUFFERED=1
+    command: >
+      python -m notebook
+      --port=8888
+      --no-browser
+      --ip=0.0.0.0
+      --NotebookApp.allow_origin=*
+      --NotebookApp.notebook_dir=/home/kyoon/jupyter/notebooks
