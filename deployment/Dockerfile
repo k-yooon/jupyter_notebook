@@ -19,7 +19,7 @@ WORKDIR /home/kyoon
 COPY requirements_local.txt /requirements.txt
 RUN pip install --no-cache-dir -r /requirements.txt
 
-COPY deployments/notebook-int/requirements_notebook.txt /requirements_notebook.txt
+COPY requirements_notebook.txt /requirements_notebook.txt
 RUN pip install --no-cache-dir -r /requirements_notebook.txt
 
 USER ${NB_USER}
